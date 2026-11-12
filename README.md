@@ -362,14 +362,10 @@ vlsi_analog/
 │   ├── layout/          Magic .mag/.gds, layout Tcl script, LVS report, PEX netlist
 │   ├── simulations/     Monte Carlo JSON, tuned bias, AC/transient data
 │   ├── screenshots/     schematics, responses, Monte Carlo, corners, THD, layout
-│   └── report/          full design report (PDF)
 ├── notch_ota_bulk_driven/            # OTA style 2 (same structure)
 ├── notch_ota_current_division/       # OTA style 3 (same structure)
-├── opamp_buffer/                     # class-AB output buffer
-├── comparison/                       # overlay plots, summary.json, comparison report (PDF)
-├── paper/                            # IEEE-format conference paper (.docx/.pdf) + figures
-├── cmos/                             # inverter warm-up (schematic → layout → post-layout)
-└── xschemrc
+├── comparison/                       # overlay plots, summary.json
+├── paper/                            
 ```
 
 ---
@@ -441,5 +437,4 @@ The bias currents used for tuning are stored in `simulations/tuned_ota_*.txt` (5
 11. M. S. Ansari, R. Sinha, S. Khot, "Ultra-low power 50/60 Hz notch filter for biomedical signal acquisition using 32nm ±0.15V bulk-driven subthreshold CMOS OTAs," *ICEEE*, 2017, pp. 309–313.
 12. B. Şekerkıran, "A compact rail-to-rail output stage for CMOS operational amplifiers," *IEEE JSSC*, vol. 34, no. 1, pp. 107–110, 1999.
 13. M. J. M. Pelgrom, A. C. J. Duinmaijer, A. P. G. Welbers, "Matching properties of MOS transistors," *IEEE JSSC*, vol. 24, no. 5, pp. 1433–1439, 1989.
-
-The full write-up is in [`paper/notch_ota_comparison_ieee_paper.pdf`](paper/notch_ota_comparison_ieee_paper.pdf). Detailed design reports for each OTA are in each folder's `report/` directory.
+.

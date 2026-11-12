@@ -1,0 +1,40 @@
+##### tran 13:31:40
+Step 2 mV: final change 0.921 mV (expected near 0.885), overshoot 14.0%
+  residual ripple after 0.7 s: 1.7 uV
+  late/early swing ratio 1.739 (well below 1 means it decays, no oscillation)
+Mix (2 mV at 10 Hz + 2 mV at 50 Hz): output 10 Hz = 924.1 uV, 50 Hz = 82.13 uV
+  attenuation of the 50 Hz tone relative to the 10 Hz tone: 21.0 dB
+##### thd 13:32:31
+  Vin peak   Vout H1  THD out %  THD filter %   HD2 %   HD3 %
+     5.0mV   2.312mV      0.617         0.643   0.617   0.007
+    10.0mV   4.626mV      1.242         1.294   1.242   0.029
+    20.0mV   9.280mV      2.498         2.598   2.494   0.148
+##### mc 13:36:35
+/home/vlsi/eda/projects/notch/tools/notch.py:60: RuntimeWarning: overflow encountered in exp
+  f0 = float(np.exp(-c[1] / (2 * c[0])))
+/home/vlsi/eda/projects/notch/tools/notch.py:60: RuntimeWarning: overflow encountered in exp
+  f0 = float(np.exp(-c[1] / (2 * c[0])))
+/usr/lib/python3/dist-packages/numpy/core/_methods.py:230: RuntimeWarning: invalid value encountered in subtract
+  x = asanyarray(arr - arrmean)
+100/100 runs converged in 40.1 min
+notch frequency        mean       inf Hz   sigma      nan   min     0.000   max       inf
+notch depth            mean   185.223 dB   sigma 2893.371   min -11230.776   max 26075.813
+passband gain @10 Hz   mean   -20.237 dB   sigma   23.379   min   -71.532   max     9.148
+output DC              mean   -97.158 mV   sigma  253.620   min  -685.636   max   357.065
+f0 within 50 +/-2 Hz: 12%   within 50 +/-5 Hz: 24%   depth >= 20 dB: 48%
+Traceback (most recent call last):
+  File "/home/vlsi/eda/projects/notch/tools/mc.py", line 79, in <module>
+    a.hist(x, bins=25, color="#2d9cdb", edgecolor="white")
+  File "/usr/lib/python3/dist-packages/matplotlib/__init__.py", line 1416, in inner
+    return func(ax, *map(sanitize_sequence, args), **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/axes/_axes.py", line 6639, in hist
+    m, bins = np.histogram(x[i], bins, weights=w[i], **hist_kwargs)
+  File "<__array_function__ internals>", line 5, in histogram
+  File "/usr/lib/python3/dist-packages/numpy/lib/histograms.py", line 793, in histogram
+    bin_edges, uniform_bins = _get_bin_edges(a, bins, range, weights)
+  File "/usr/lib/python3/dist-packages/numpy/lib/histograms.py", line 426, in _get_bin_edges
+    first_edge, last_edge = _get_outer_edges(a, range)
+  File "/usr/lib/python3/dist-packages/numpy/lib/histograms.py", line 315, in _get_outer_edges
+    raise ValueError(
+ValueError: supplied range of [0.0, inf] is not finite
+##### POST_DONE 14:16:46

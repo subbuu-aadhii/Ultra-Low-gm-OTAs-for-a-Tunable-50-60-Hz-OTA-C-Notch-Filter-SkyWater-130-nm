@@ -1,0 +1,81 @@
+
+##### python3 ota_val.py ota_cd (12:28:12)
+--- Current-division OTA: Ib=0.0897 nA ---
+dev   type         W/Lxm        Id   gm/Id    Vgs    Vds |Vds|/Vdsat
+M1    pl           1/8x1  6.88e-10    20.4 -0.297 -0.544        13.4
+M2    pl           1/8x1  6.88e-10    20.4 -0.297 -0.544        13.4
+M5    pl         1.0/8x1  6.66e-11    23.9 -0.191 -0.550        15.2
+MC1   pl          2/20x2  1.56e-10    24.9 -0.356 -1.256        32.9
+MB1   pl          2/20x1  7.57e-11    24.9 -0.356 -0.877        23.0
+MA1   pl          2/20x6  4.36e-10    24.9 -0.356 -0.356         9.3
+MC2   pl          2/20x2  1.53e-10    24.9 -0.356 -1.256        32.9
+MB2   pl          2/20x1  7.13e-11    24.9 -0.356 -0.356         9.3
+MA2   pl          2/20x6  4.46e-10    24.9 -0.356 -0.877        23.0
+MR1   pl           2/4x1  2.08e-11    26.3 -0.301 -0.006         0.2
+MR2   pl           2/4x1  1.83e-11    26.3 -0.301 -0.005         0.1
+M6    pl           2/4x1  1.06e-10    26.6 -0.295 -0.295         7.8
+M7    n           2/20x1  1.06e-10    26.1  0.315  0.955        25.5
+M3    n           2/20x1  5.21e-10    25.2  0.379  0.379        10.0
+M4    n           2/20x1  5.47e-10    25.2  0.379  0.900        23.7
+Idd total (OTA + bias master) 2.63 nA, power 4.74 nW; Iout at Vd=0: -39.43 pA
+gm at Vd=0 (DC)        1.511 nA/V    gm at 1 Hz 1.511 nA/V    -3 dB of gm at 11220 Hz
+Input offset           26.08 mV  (Iout at 0 V = -39.4 pA)
+Linear range (gm +/-10%) -31 to 33 mV
+Rout 12.43 GOhm, open-loop gain A0 = gm*Rout = 18.8 = 25.5 dB
+CMRR 46.2 dB (Gcm = 7.44 pA/V)
+Input-referred noise 0.05-300 Hz: 334.4 uVrms
+
+##### python3 notch_ac.py ota_cd (12:28:45)
+--- tuning to 50 Hz ---
+  Ib=0.0897 nA -> f0=49.990 Hz depth=22.5 dB
+  DC nodes: v1=-38.7 vx=-11.5 vo=-65.2 out=-60.5 mV
+  Idd total 860.8 nA -> 1549.4 nW
+  passband@10Hz -6.59 dB  notch at 49.99 Hz  depth 22.5 dB  -3dB 39.7..nan Hz
+--- tuning to 60 Hz ---
+  Ib=0.1076 nA -> f0=58.388 Hz depth=24.7 dB
+  Ib=0.1106 nA -> f0=59.713 Hz depth=25.0 dB
+  Ib=0.1111 nA -> f0=59.950 Hz depth=25.1 dB
+  Ib=0.1112 nA -> f0=59.991 Hz depth=25.1 dB
+  DC nodes: v1=-32.0 vx=-10.4 vo=-54.3 out=-51.3 mV
+  Idd total 864.9 nA -> 1556.8 nW
+  passband@10Hz -7.15 dB  notch at 59.99 Hz  depth 25.1 dB  -3dB 46.9..nan Hz
+
+##### python3 cd_sch.py (12:30:19)
+OTA schematic vs design table:
+  schematic check: 15 devices compared, 0 errors
+  schematic check: 47 devices compared, 0 errors
+Xschem netlist: f0=49.99 Hz depth=22.5 dB pb=-6.59 dB; DC out=-60.5 mV
+True
+
+##### python3 tran_val.py ota_cd (12:30:41)
+Step 2 mV: final change 0.929 mV (expected near 0.885), overshoot 14.5%
+  residual ripple after 0.7 s: 4.0 uV
+  late/early swing ratio 0.862 (well below 1 means it decays, no oscillation)
+Mix (2 mV at 10 Hz + 2 mV at 50 Hz): output 10 Hz = 936.2 uV, 50 Hz = 70.29 uV
+  attenuation of the 50 Hz tone relative to the 10 Hz tone: 22.5 dB
+
+##### python3 mc.py ota_cd 100 tt_mm (12:32:38)
+100/100 runs converged in 16.6 min
+notch frequency        mean 51163610244870.289 Hz   sigma 508639806109092.062   min     0.000   max 5112063993410359.000
+notch depth            mean     6.691 dB   sigma   64.417   min  -572.724   max    29.891
+passband gain @10 Hz   mean   -11.926 dB   sigma   15.431   min   -67.217   max     8.331
+output DC              mean   -74.534 mV   sigma  145.116   min  -678.303   max   268.387
+f0 within 50 +/-2 Hz: 12%   within 50 +/-5 Hz: 22%   depth >= 20 dB: 56%
+
+##### python3 corners.py ota_cd (12:49:17)
+corner     T  f0(nom Ib)   depth      pb  |  Ib trim nA  f0 trim   depth
+tt        27       49.99    22.5   -6.59  |      0.0897    50.00    22.5
+ss        27       47.87    21.9    4.76  |      0.0937    49.77    22.4
+ff        27       53.27    22.0   -7.21  |      0.0842    50.53    21.2
+sf        27       48.46    23.0   -6.95  |      0.0925    49.81    23.4
+fs        27       60.34    22.1   -7.98  |      0.0743    53.62    20.5
+tt        37       49.36    22.3   -6.98  |      0.0909    49.92    22.5
+tt         0       51.95    22.7   -1.50  |      0.0863    50.22    22.2
+tt        85       50.85    21.4   -7.71  |      0.0882    50.25    21.3
+
+##### python3 thd.py ota_cd (12:50:45)
+  Vin peak   Vout H1  THD out %  THD filter %   HD2 %   HD3 %
+     5.0mV   2.341mV      0.686         0.707   0.684   0.005
+    10.0mV   4.686mV      1.343         1.386   1.343   0.040
+    20.0mV   9.406mV      2.673         2.754   2.668   0.163
+##### CHAIN_DONE (12:56:48)

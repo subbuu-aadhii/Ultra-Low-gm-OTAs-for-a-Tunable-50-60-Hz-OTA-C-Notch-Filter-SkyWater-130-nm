@@ -1,0 +1,88 @@
+
+##### python3 ota_val.py ota_cc (22:30:18)
+--- Current-cancellation OTA: Ib=0.209 nA ---
+dev   type         W/Lxm        Id   gm/Id    Vgs    Vds |Vds|/Vdsat
+Mt    pl          7/20x1  2.15e-10    23.8 -0.233 -0.598        17.5
+MNa   pl          7/20x3  8.25e-11    27.8 -0.302 -0.932        24.8
+M1a   pl          7/20x1  2.63e-11    27.8 -0.302 -0.302         8.0
+MNb   pl          7/20x3  7.88e-11    27.8 -0.302 -0.302         8.0
+M1b   pl          7/20x1  2.75e-11    27.8 -0.302 -0.932        24.8
+M2a   n            3/8x1  1.10e-10    26.5  0.269  0.269         7.2
+M2b   n            3/8x1  1.17e-10    26.5  0.269  0.900        24.0
+Idd total (OTA + bias master) 0.42 nA, power 0.76 nW; Iout at Vd=0: -11.64 pA
+gm at Vd=0 (DC)        1.529 nA/V    gm at 1 Hz 1.534 nA/V    -3 dB of gm at 5012 Hz
+Input offset           7.61 mV  (Iout at 0 V = -11.6 pA)
+Linear range (gm +/-10%) -23 to 25 mV
+Rout 49.95 GOhm, open-loop gain A0 = gm*Rout = 76.4 = 37.7 dB
+CMRR 55.9 dB (Gcm = 2.46 pA/V)
+Input-referred noise 0.05-300 Hz: 149.9 uVrms
+
+##### python3 notch_ac.py ota_cc (22:30:33)
+--- tuning to 50 Hz ---
+  Ib=0.2090 nA -> f0=49.847 Hz depth=40.6 dB
+  Ib=0.2096 nA -> f0=49.961 Hz depth=43.1 dB
+  DC nodes: v1=-11.2 vx=-3.7 vo=-18.8 out=-20.9 mV
+  Idd total 866.9 nA -> 1560.5 nW
+  passband@10Hz -7.06 dB  notch at 49.96 Hz  depth 43.1 dB  -3dB 39.2..nan Hz
+--- tuning to 60 Hz ---
+  Ib=0.2508 nA -> f0=59.362 Hz depth=42.9 dB
+  Ib=0.2535 nA -> f0=60.002 Hz depth=41.6 dB
+  DC nodes: v1=-11.1 vx=-3.7 vo=-18.6 out=-20.8 mV
+  Idd total 867.2 nA -> 1561.0 nW
+  passband@10Hz -7.06 dB  notch at 60.00 Hz  depth 41.6 dB  -3dB 46.9..nan Hz
+
+##### python3 cc_sch.py (22:30:49)
+OTA schematic vs design table:
+  schematic check: 7 devices compared, 0 errors
+Testbench lines:
+   xo1 vin vx v1 vb vdd vss ota_cc
+   xo2 v1 vo vx vb vdd vss ota_cc
+   xo3 vx 0 vo vb vdd vss ota_cc
+   xo4 0 v1 v1 vb vdd vss ota_cc
+   xo5 0 vo vo vb vdd vss ota_cc
+   XC1 v1 0 sky130_fd_pr__cap_mim_m3_1 W=16 L=16 MF=1
+   XC3 vo 0 sky130_fd_pr__cap_mim_m3_1 W=16 L=16 MF=1
+   XCL2 0 vx sky130_fd_pr__cap_mim_m3_1 W=45 L=45 MF=1
+   XC2 vo v1 sky130_fd_pr__cap_mim_m3_1 W=45 L=45 MF=1
+   xbuf vo out vdd vss bufb opamp_buffer
+   Ibuf vdd bufb 50n
+   Vin vin 0 dc 0 ac 1
+   XMbias vb vb vdd vdd sky130_fd_pr__pfet_01v8_lvt L=20 W=7 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+   Ib vb vss 2.09642e-10
+  schematic check: 36 devices compared, 0 errors
+Xschem netlist: f0=49.96 Hz depth=43.1 dB pb=-7.06 dB -3dB 39.2..nan Hz; DC out=-20.9 mV
+True True
+
+##### python3 tran_val.py ota_cc (22:31:36)
+TRANSIENT STOPPED EARLY at t=0.300 s; see /home/vlsi/eda/projects/notch/notch_ota_current_cancellation/simulations/tr_step.log
+
+##### python3 mc.py ota_cc 100 tt_mm (22:32:03)
+100/100 runs converged in 24.3 min
+notch frequency        mean    54.582 Hz   sigma   47.417   min    21.014   max   518.867
+notch depth            mean    39.623 dB   sigma    9.727   min     1.130   max    46.842
+passband gain @10 Hz   mean   -11.717 dB   sigma   19.008   min  -103.003   max    -3.201
+output DC              mean   -39.412 mV   sigma  158.894   min  -669.646   max   241.438
+f0 within 50 +/-2 Hz: 70%   within 50 +/-5 Hz: 93%   depth >= 20 dB: 93%
+
+##### python3 corners.py ota_cc (22:56:24)
+corner     T  f0(nom Ib)   depth      pb  |  Ib trim nA  f0 trim   depth
+tt        27       49.96    43.1   -7.06  |      0.2098    49.98    42.4
+ss        27       48.54    43.2   -3.05  |      0.2159    49.95    43.3
+ff        27       51.76    43.0   -8.18  |      0.2025    50.17    42.4
+sf        27       48.04    40.1   -8.27  |      0.2182    49.96    41.2
+fs        27       54.15    62.3   -8.66  |      0.1936    50.49    46.4
+tt        37       48.83    43.4   -7.71  |      0.2147    49.96    43.5
+tt         0       53.23    42.7    1.89  |      0.1969    50.19    41.6
+tt        85       45.31    50.0   -8.24  |      0.2314    49.67    54.7
+
+##### python3 thd.py ota_cc (22:57:19)
+/home/vlsi/eda/projects/notch/tools/thd.py:39: RuntimeWarning: invalid value encountered in double_scalars
+  thd = np.sqrt(np.sum(h[1:] ** 2)) / h[0] * 100
+/home/vlsi/eda/projects/notch/tools/thd.py:51: RuntimeWarning: invalid value encountered in double_scalars
+  print(f"{a*1e3:8.1f}mV{h[0]*1e3:8.3f}mV{t:11.3f}{tf:14.3f}{h[1]/h[0]*100:8.3f}{h[2]/h[0]*100:8.3f}")
+  Vin peak   Vout H1  THD out %  THD filter %   HD2 %   HD3 %
+     1.0mV   0.000mV        nan           nan     nan     nan
+     5.0mV   2.218mV      0.184         0.315   0.145   0.041
+    10.0mV   4.437mV      0.333         0.632   0.330   0.033
+    20.0mV   8.881mV      0.658         1.259   0.655   0.058
+##### CHAIN_DONE (23:02:22)

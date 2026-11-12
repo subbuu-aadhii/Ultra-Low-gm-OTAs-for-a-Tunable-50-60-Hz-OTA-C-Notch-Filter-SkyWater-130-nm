@@ -1,0 +1,16 @@
+* NGSPICE file created from ota_cc.ext - technology: sky130A
+
+.subckt ota_cc inp inn out vb vdd vss
+X0 out inn a_n58_0# vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X1 a_4000_0# a_4000_0# vss vss sky130_fd_pr__nfet_01v8 ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=8
+X2 a_4000_0# inp a_n58_0# vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X3 a_n58_0# vb vdd vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X4 out inn a_n58_0# vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X5 out inp a_n58_0# vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X6 a_4000_0# inp a_n58_0# vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X7 out a_4000_0# vss vss sky130_fd_pr__nfet_01v8 ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=8
+X8 out inn a_n58_0# vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X9 a_4000_0# inn a_n58_0# vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X10 a_4000_0# inp a_n58_0# vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+.ends
+

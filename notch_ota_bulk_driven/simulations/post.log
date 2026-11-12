@@ -1,0 +1,19 @@
+##### tran 11:40:29
+Step 2 mV: final change 1.275 mV (expected near 0.885), overshoot 15.8%
+  residual ripple after 0.7 s: 0.4 uV
+  late/early swing ratio 0.466 (well below 1 means it decays, no oscillation)
+Mix (2 mV at 10 Hz + 2 mV at 50 Hz): output 10 Hz = 1262.5 uV, 50 Hz = 24.56 uV
+  attenuation of the 50 Hz tone relative to the 10 Hz tone: 34.2 dB
+##### thd 11:41:14
+  Vin peak   Vout H1  THD out %  THD filter %   HD2 %   HD3 %
+     5.0mV   3.158mV      0.799         0.011   0.799   0.013
+    10.0mV   6.323mV      1.601         0.021   1.600   0.050
+    20.0mV  12.703mV      3.220         0.043   3.214   0.201
+##### mc 11:45:10
+100/100 runs converged in 15.8 min
+notch frequency        mean    50.077 Hz   sigma    2.382   min    43.249   max    56.032
+notch depth            mean    34.086 dB   sigma    1.620   min    30.921   max    40.706
+passband gain @10 Hz   mean    -4.825 dB   sigma    2.452   min    -9.071   max     1.302
+output DC              mean    57.353 mV   sigma   51.731   min   -31.473   max   185.025
+f0 within 50 +/-2 Hz: 67%   within 50 +/-5 Hz: 95%   depth >= 20 dB: 100%
+##### POST_DONE 12:00:59

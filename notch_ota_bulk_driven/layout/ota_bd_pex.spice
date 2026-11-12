@@ -1,0 +1,66 @@
+* NGSPICE file created from ota_bd.ext - technology: sky130A
+
+.subckt ota_bd inp inn out vb vg vdd vss
+X0 a_400_n2506# vg a_6200_0# inn sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X1 a_4240_n2506# vg a_6200_0# inp sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X2 out a_0_n26# vdd vdd sky130_fd_pr__pfet_01v8_lvt ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=8
+X3 a_400_n2506# a_400_n2506# vss vss sky130_fd_pr__nfet_01v8 ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=8
+X4 out a_4240_n2506# vss vss sky130_fd_pr__nfet_01v8 ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=8
+X5 a_6200_0# vb vdd vdd sky130_fd_pr__pfet_01v8_lvt ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=20
+X6 a_0_n26# a_400_n2506# vss vss sky130_fd_pr__nfet_01v8 ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=8
+X7 a_4240_n2506# a_4240_n2506# vss vss sky130_fd_pr__nfet_01v8 ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=8
+X8 a_0_n26# a_0_n26# vdd vdd sky130_fd_pr__pfet_01v8_lvt ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=8
+C0 a_0_n26# a_6200_0# 0.00223f
+C1 a_0_n26# a_400_n2506# 0.42082f
+C2 a_0_n26# a_4240_n2506# 0.01567f
+C3 a_0_n26# vdd 8.15904f
+C4 a_0_n26# inn 1.7999f
+C5 a_0_n26# inp 1.81487f
+C6 a_0_n26# vb 0.21359f
+C7 a_0_n26# vg 0.7255f
+C8 a_0_n26# out 0.14669f
+C9 a_6200_0# a_400_n2506# 1.57561f
+C10 a_6200_0# a_4240_n2506# 0.0524f
+C11 a_6200_0# vdd 2.12492f
+C12 a_6200_0# inn 0.36978f
+C13 a_6200_0# inp 0.32519f
+C14 a_6200_0# vb 0.32947f
+C15 a_6200_0# vg 0.68361f
+C16 a_6200_0# out 0
+C17 a_400_n2506# a_4240_n2506# 1.81798f
+C18 a_400_n2506# vdd 0.69874f
+C19 a_400_n2506# inn 0.36339f
+C20 a_400_n2506# inp 0.01507f
+C21 a_400_n2506# vb 0.01297f
+C22 a_400_n2506# vg 0.34359f
+C23 a_400_n2506# out 0
+C24 a_4240_n2506# vdd 0.48842f
+C25 a_4240_n2506# inn 0
+C26 a_4240_n2506# inp 0.36339f
+C27 a_4240_n2506# vb 0.00319f
+C28 a_4240_n2506# vg 0.34313f
+C29 a_4240_n2506# out 1.148f
+C30 vdd inn 0.13182f
+C31 vdd inp 0.14512f
+C32 vdd vb 3.41865f
+C33 vdd vg 1.05159f
+C34 vdd out 0.5053f
+C35 inn inp 0.01529f
+C36 inn vb 0
+C37 inn vg 2.95981f
+C38 inn out 0
+C39 inp vg 2.94009f
+C40 vb vg 0.00143f
+C41 vg out 0.0057f
+C42 out vss 4.59686f
+C43 vg vss 1.67815f
+C44 vb vss 0.74133f
+C45 inp vss 36.4431f
+C46 inn vss 36.4431f
+C47 vdd vss 77.4108f
+C48 a_4240_n2506# vss 7.50607f
+C49 a_400_n2506# vss 7.15547f
+C50 a_6200_0# vss 1.61476f
+C51 a_0_n26# vss 2.55564f
+.ends
+
